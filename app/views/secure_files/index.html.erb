@@ -1,0 +1,13 @@
+<h1>Your secure stored files</h1>
+<h2>These are public available files</h2>
+<% if @files.blank? %>
+  <p>Ups, no public files available. Do you want to <%=link_to 'create one', new_secure_file_path %>?</p>
+<% else %>
+  <ul>
+    <% @files.each do |file| %>
+      <li><%=link_to file.name || File.basename(file.filename), download_file_path(full_filename: file.filename) %></li>
+    <% end %>
+  </ul>
+  <%=link_to 'Create new file', new_secure_file_path %>
+
+<% end %>

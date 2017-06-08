@@ -1,0 +1,65 @@
+<h1>Create a secure file</h1>
+<%= form_for @file do |f| %>
+  <% if @file.errors.present? %>
+    <div class="errors">
+      <ul>
+        <% @file.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :file, class: 'required' %>
+    <%= f.file_field :file %>
+  </div>
+
+  <div>
+    <%= f.label :content_type_confirmation, class: 'required' %>
+    <%= f.collection_select :content_type_confirmation, [
+        ['application/pdf','PDF file'],
+        ['application/vnd.openxmlformats-officedocument.wordprocessingml.document','MS Word document (docx)'],
+        ['application/msword','MS Word document (doc)'],
+        ['image/png','PNG image'],
+      ], :first, :last %>
+  </div>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Name to show on listing' %>
+  </div>
+
+  <div>
+    <%= f.label :restricted %>
+    <%= f.check_box :restricted %>
+  </div>
+
+  <%= f.fields_for :owner do |u| %>
+    <div class="account">
+
+      <p>Please include access credentials to access (if restricted) or remove this file</p>
+
+      <div>
+        <%= u.label :name %>
+        <%= u.text_field :name %>
+      </div>
+
+
+      <div>
+        <%= u.label :email, class: 'required' %>
+        <%= u.email_field :email %>
+      </div>
+
+      <div>
+        <%= u.label :password, class: 'required' %>
+        <%= u.password_field :password, autocomplete: 'new-password' %>
+      </div>
+
+    </div>
+  <% end %>
+
+  <footer>
+    <%= f.submit %>
+  </footer>
+<% end %>

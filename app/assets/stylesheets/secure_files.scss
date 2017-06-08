@@ -1,0 +1,22 @@
+// Place all the styles related to the secure_files controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.errors {
+  color: #bf1523;
+}
+
+label.required:before {
+  content: '*';
+  font-size: 90%;
+}
+form footer {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 5px;
+}
+.field_with_errors {
+  display: inline;
+  label {
+    color: #bf1523;
+  }
+}
