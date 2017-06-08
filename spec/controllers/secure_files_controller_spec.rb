@@ -18,8 +18,9 @@ RSpec.describe SecureFilesController, type: :controller do
 
   describe "POST #create" do
     it "requires some params" do
-      post :create
-      expect(response).to have_http_status(:error)
+      expect{
+        post :create
+      }.to raise_error(ActionController::ParameterMissing)
     end
   end
 
