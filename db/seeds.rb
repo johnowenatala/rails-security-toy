@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Sample data
+if User.all.empty?
+  10.times do
+    User.create(
+      email: Faker::Internet.email,
+      password: "#{Faker::Hacker.verb} #{Faker::Hacker.adjective} #{Faker::Hacker.noun}", # nice password
+      name: [nil,Faker::Name.name, Faker::Name.first_name].sample
+    )
+  end
+end
